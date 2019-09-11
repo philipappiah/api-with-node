@@ -1,11 +1,22 @@
+
+const bodyParser = require('body-parser');
+const graphglHttp = require('express-graphql');
+const {buildSchema} = require('graphql');
 const mongoose = require('mongoose');
-
-
+const Event =  require("./models/tourModels");
 
 const dotenv = require('dotenv');
 dotenv.config({path:'./config.env'});
 const app = require("./app");
 const DB = process.env.DATABASE_LOCAL;
+
+
+
+const event = [];
+
+app.use(bodyParser);
+
+
 
 //const DB = process.env.DATABASE.replace('<PASSWORD>',process.env.DATABASE_PASSWORD);
 mongoose.connect(DB,{
@@ -21,3 +32,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
     console.log(`App running on post ${port}`);
 }) 
+
+
